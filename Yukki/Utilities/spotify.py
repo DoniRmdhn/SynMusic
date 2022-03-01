@@ -235,15 +235,15 @@ def getsp_categories():
                 ),
                 InlineKeyboardButton(
                     text="Dance/Electronic", callback_data="cat edm_dance"
-                ),                                   
+                ),   
+                InlineKeyboardButton(
+                    text="Jazz", callback_data="cat jazz"
+                ),  
             ],
             [
                 InlineKeyboardButton(
                     text="Cooking & Dining", callback_data=f"cat dinner"
-                ),
-                InlineKeyboardButton(
-                    text="Jazz", callback_data="cat jazz"
-                ),                                   
+                ),                                 
             ],
             [
                 InlineKeyboardButton(
