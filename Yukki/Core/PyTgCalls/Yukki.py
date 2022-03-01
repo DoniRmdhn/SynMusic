@@ -532,6 +532,7 @@ async def playout_end(pytgclients, chat_id):
                     "28492",
                     aud,
                 )
+                await finaltext.delete()
             elif str(finxx) == "s1s":
                 read = (str(afk)).replace("s1s_", "", 1)
                 s = read.split("_+_")
@@ -563,6 +564,7 @@ async def playout_end(pytgclients, chat_id):
                             f"**Video Streaming**\n\n🎥<b>__Started Playing:__ </b>Next Video from Telegram \n👤**__Requested by:__** {mention}"
                         ),
                     )
+                    await finaltext.delete()
                 else:
                     (
                         title,
@@ -625,6 +627,7 @@ async def playout_end(pytgclients, chat_id):
                         "28492",
                         aud,
                     )
+                    await finaltext.delete()
             else:
                 mystic = await app.send_message(
                     chat_id,
@@ -671,9 +674,10 @@ async def playout_end(pytgclients, chat_id):
                     photo=thumb,
                     reply_markup=InlineKeyboardMarkup(buttons),
                     caption=(
-                        f"🎥<b>__Started Playing:__ </b>[{title[:25]}](https://www.youtube.com/watch?v={afk}) \n👤**__Requested by:__** {mention}"
+                        f"🎧<b>Started Playing:</b>[{title[:25]}](https://www.youtube.com/watch?v={afk})"
                     ),
                 )
+                 
                 os.remove(thumb)
                 videoid = afk
                 await start_timer(
@@ -685,6 +689,7 @@ async def playout_end(pytgclients, chat_id):
                     "28492",
                     aud,
                 )
+                await finaltext.delete()
 
     except Exception as e:
         print(e)
