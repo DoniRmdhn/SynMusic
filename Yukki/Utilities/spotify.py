@@ -145,17 +145,16 @@ def getsp_categories():
                 ),
                 InlineKeyboardButton(
                     text="Pop", callback_data="cat pop"
-                ),                                   
-            ],
-            [
+                ), 
                 InlineKeyboardButton(
                     text="EQUAL", callback_data=f"cat equal"
-                ),
+                ),                                 
+            ],
+            [
+                
                 InlineKeyboardButton(
                     text="Mood", callback_data="cat mood"
                 ),                                   
-            ],
-            [
                 InlineKeyboardButton(
                     text="Decades", callback_data=f"cat decades"
                 ),
@@ -191,17 +190,16 @@ def getsp_categories():
                 ),
                 InlineKeyboardButton(
                     text="Workout", callback_data="cat workout"
-                ),                                   
-            ],
-            [
+                ),  
                 InlineKeyboardButton(
                     text="Chill", callback_data=f"cat chill"
-                ),
+                ),                                
+            ],
+            [
+
                 InlineKeyboardButton(
                     text="Focus", callback_data="cat focus"
                 ),                                   
-            ],
-            [
                 InlineKeyboardButton(
                     text="Sleep", callback_data=f"cat sleep"
                 ),
