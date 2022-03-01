@@ -25,3 +25,4 @@ spotipy
 bs4
 html5lib
 numpy
+pytube
