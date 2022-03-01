@@ -121,7 +121,8 @@ def getsp_categories_info(id):
             try:    
                 button2 = [
                             InlineKeyboardButton(text=i[0][0], callback_data="psppl" + i[0][1]),
-                            InlineKeyboardButton(text=i[1][0], callback_data="psppl" + i[1][1]),                                   
+                            InlineKeyboardButton(text=i[1][0], callback_data="psppl" + i[1][1]), 
+                            InlineKeyboardButton(text=i[1][1], callback_data="psppl" + i[2][2]),
                         ]
                 button1.append(button2)
             except:
