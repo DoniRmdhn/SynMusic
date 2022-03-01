@@ -1,30 +1,21 @@
 import asyncio
 import importlib
-import os
-import re
-
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from pytgcalls import idle
 from rich.console import Console
-from rich.table import Table
 from youtubesearchpython import VideosSearch
-
 from config import (LOG_GROUP_ID, LOG_SESSION, STRING1, STRING2, STRING3,
-                    STRING4, STRING5, THUMBNAIL)
+                    STRING4, STRING5)
 from Yukki import (ASS_CLI_1, ASS_CLI_2, ASS_CLI_3, ASS_CLI_4, ASS_CLI_5,
                    ASSID1, ASSID2, ASSID3, ASSID4, ASSID5, ASSNAME1, ASSNAME2,
-                   ASSNAME3, ASSNAME4, ASSNAME5, BOT_ID, BOT_NAME, BOT_USERNAME, LOG_CLIENT,
-                   OWNER_ID, app)
+                   ASSNAME3, ASSNAME4, ASSNAME5, BOT_ID, BOT_NAME, LOG_CLIENT,app)
 from Yukki.Core.Clients.cli import LOG_CLIENT
 from Yukki.Core.PyTgCalls.Yukki import (pytgcalls1, pytgcalls2, pytgcalls3,
                                         pytgcalls4, pytgcalls5)
-from Yukki.Database import (get_active_chats, get_active_video_chats,
-                            get_sudoers, is_on_off, remove_active_chat,
+from Yukki.Database import (get_active_chats, get_active_video_chats,remove_active_chat,
                             remove_active_video_chat)
-from Yukki.Inline import private_panel
 from Yukki.Plugins import ALL_MODULES
-from Yukki.Utilities.inline import paginate_modules
 
 loop = asyncio.get_event_loop()
 console = Console()
@@ -82,7 +73,7 @@ async def initiate_bot():
             status="[bold blue]Importation Completed!",
         )
     console.print(
-        "[bold green]Congrats!! SiestaXMusic Bot has started successfully!\n"
+        "[bold green]Congrats!! Yukki Music Bot has started successfully!\n"
     )
     try:
         await app.send_message(
@@ -90,7 +81,9 @@ async def initiate_bot():
             "<b>Congrats!! Music Bot has started successfully!</b>",
         )
     except Exception as e:
-        print(str(e))
+        print(
+            "\nBot has failed to access the log Channel. Make sure that you have added your bot to your log channel and promoted as admin!"
+        )
         console.print(f"\n[red]Stopping Bot")
         return
     a = await app.get_chat_member(LOG_GROUP_ID, BOT_ID)
@@ -113,7 +106,7 @@ async def initiate_bot():
             console.print(f"\n[red]Stopping Bot")
             return
         try:
-            await ASS_CLI_1.join_chat("szteambots")
+            await ASS_CLI_1.join_chat("szteamots")
             await ASS_CLI_1.join_chat("slbotzone")
         except:
             pass
@@ -132,7 +125,7 @@ async def initiate_bot():
             console.print(f"\n[red]Stopping Bot")
             return
         try:
-            await ASS_CLI_2.join_chat("szteambots")
+            await ASS_CLI_2.join_chat("szteamots")
             await ASS_CLI_2.join_chat("slbotzone")
         except:
             pass
@@ -151,7 +144,7 @@ async def initiate_bot():
             console.print(f"\n[red]Stopping Bot")
             return
         try:
-            await ASS_CLI_3.join_chat("szteambots")
+            await ASS_CLI_3.join_chat("szteamots")
             await ASS_CLI_3.join_chat("slbotzone")
         except:
             pass
@@ -227,6 +220,7 @@ async def initiate_bot():
     console.print(f"\n[red]Stopping Bot")
 
 
+
 @app.on_message(filters.command("start") & filters.private)
 async def start_command(_, message):
     if len(message.text.split()) > 1:
@@ -246,6 +240,7 @@ async def start_command(_, message):
                 link = result["link"]
                 published = result["publishedTime"]
             searched_text = f"""
+
 ࿂ **Title:** `{title}`
 ࿂ **Duration:** `{duration}` Mins
 ࿂ **Views:** `{views}`
