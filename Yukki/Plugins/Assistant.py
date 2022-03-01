@@ -48,7 +48,7 @@ __HELP__ = f"""
 """
 
 
-ass_num_list = ["1", "2", "3", "4", "5"]
+ass_num_list = ["1", "2", "3", "4", "5", "random"]
 
 
 @app.on_message(filters.command("changeassistant") & filters.user(SUDOERS))
