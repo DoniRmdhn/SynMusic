@@ -3,7 +3,6 @@ from Yukki.Utilities.spotify import getsp_categories, getsp_categories_info
 from Yukki import app
 import pyrogram
 from pyrogram import filters
-from Yukki.Plugins.custom.strings import *
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 @app.on_callback_query(filters.regex("cat"))
