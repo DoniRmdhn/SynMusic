@@ -98,27 +98,3 @@ async def videodown(_, message):
 Please check, you using correct format or your spellings are correct and try again!
 Use help Menu : /help 
        """)
-
-API = 'https://single-developers.up.railway.app/tiktok?url='
-
-caption_text="""
-✅ Successfully Downloaded {} Video 
-
-- Powerd by : [TikTok Download API](https://github.com/Single-Developers/API/blob/main/tiktok/Note.md)
-"""
-@app.on_message(filters.command("tiktok"))
-async def videodown(_, message):
-   try: 
-    if len(message.command) < 2:
-            return await message.reply_text("Give me some tiktok url")
-    m = await message.reply_text("`Searching ...`")
-    name = message.text.split(None, 1)[1]
-    req=requests.get(API+name).json()
-    no_watermark=req['no_watermark']
-    watermark= req['watermark']
-    await message.reply_video(video=no_watermark,supports_streaming=True,caption=caption_text.format('No Watermark'))
-    await message.reply_video(video=watermark,supports_streaming=True,caption=caption_text.format('Watermark'))
-   except Exception:
-       await m.edit(f"""
-**Nothing Found** {message.from_user.mention}    
-""")
