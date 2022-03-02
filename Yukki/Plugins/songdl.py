@@ -13,12 +13,9 @@ CAPTION_TEXT = """
 """
 
 CAPTION_BTN = InlineKeyboardMarkup(
-            [[
-                    InlineKeyboardButton("News  Channel", url="https://t.me/szteambots")
-                ],
                 [
-                    InlineKeyboardButton("Send To Bot's PM🤗", callback_data="_pmmenu")
-                ]])
+                    InlineKeyboardButton("News  Channel", url="https://t.me/szteambots")
+                ],)
 
 async def downloadsong(m, message, vid_id):
    try: 
@@ -44,30 +41,17 @@ async def downloadsong(m, message, vid_id):
     caption = CAPTION_TEXT.format(link.title, message.from_user.mention if message.from_user else "Anonymous Admin", "Youtube"),
     thumb = thumbloc,
     reply_markup = CAPTION_BTN)
+    await app.send_audio(song,
+    caption = CAPTION_TEXT.format(link.title, message.from_user.mention if message.from_user else "Anonymous Admin", "Youtube"),
+    thumb = thumbloc,
+    reply_markup = CAPTION_BTN)
     await m.delete()
     if os.path.exists(song):
         os.remove(song)
     if os.path.exists(thumbloc):
         os.remove(thumbloc)
    except Exception as e:
-       await m.edit(f"__Error occured. ⚠️ \nAnd also you can get a help from @slbotzone.__\n\n{str(e)}")
-
-@app.on_callback_query(filters.regex("_pmmenu"))
-async def pmsend(m, query, vid_id, thumbloc, song):
- try:   
-   mode = query.from_user.mention
-   link =  YouTube(f"https://youtu.be/{vid_id}")
-   caption = CAPTION_TEXT.format(link.title, query.from_user.mention if query.from_user else "Anonymous Admin", "Youtube"),
-   await app.send_audio(chat_id=mode,
-   audio = song,
-   thumb = thumbloc,
-   caption=caption)
-   if os.path.exists(song):
-        os.remove(song)
-   if os.path.exists(thumbloc):
-        os.remove(thumbloc)
- except Exception as e:
-            await app.send_message(query.from_user.id,"Please start @szrosebot ...")
+            await app.send_message(message.from_user.id,"Please start @szrosebot ...")
             print(str(e))
 
 async def downlodvideo(m, message, vid_id):
@@ -84,13 +68,17 @@ async def downlodvideo(m, message, vid_id):
     await message.reply_video(video, 
     caption=CAPTION_TEXT.format(link.title, message.from_user.mention if message.from_user else "Anonymous Admin", "Youtube"),
     reply_markup=CAPTION_BTN)
+    await app.send_video(video,
+    caption = CAPTION_TEXT.format(link.title, message.from_user.mention if message.from_user else "Anonymous Admin", "Youtube"),
+    reply_markup = CAPTION_BTN)
     await m.delete()
     if os.path.exists(video):
             os.remove(video)
    except Exception as e:
-       await m.edit(f"__Error occured. ⚠️ \nAnd also you can get a help from @slbotzone.__\n\n{str(e)}")
+            await app.send_message(message.from_user.id,"Please start @szrosebot ...")
+            print(str(e))
 
-@app.on_message(filters.command("song"))
+@app.on_message(filters.command("song") & filters.group)
 async def songdown(_, message):
    try: 
     if len(message.command) < 2:
@@ -106,7 +94,7 @@ Please check, you using correct format or your spellings are correct and try aga
 Use help Menu : /help 
        """)
 
-@app.on_message(filters.command("video"))
+@app.on_message(filters.command("video") & filters.group)
 async def videodown(_, message):
    try: 
     if len(message.command) < 2:
