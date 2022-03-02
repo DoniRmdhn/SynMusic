@@ -53,7 +53,7 @@ async def downloadsong(m, message, vid_id):
        await m.edit(f"__Error occured. ⚠️ \nAnd also you can get a help from @slbotzone.__\n\n{str(e)}")
 
 @app.on_callback_query(filters.regex("_pmmenu"))
-async def mylogo(_, query,vid_id,thumbloc,song):
+async def pmsend(m, query, vid_id, thumbloc, song):
  try:   
    mode = query.from_user.mention
    link =  YouTube(f"https://youtu.be/{vid_id}")
