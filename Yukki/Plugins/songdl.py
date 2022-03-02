@@ -18,7 +18,6 @@ CAPTION_BTN = InlineKeyboardMarkup(
                 ],)
 
 async def downloadsong(m, message, vid_id):
-   try: 
     m = await m.edit(text = f"📥 **Upload Started**\n@szteambots",
     reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("📥 Downloading...", callback_data="progress")]]))
@@ -46,12 +45,8 @@ async def downloadsong(m, message, vid_id):
         os.remove(song)
     if os.path.exists(thumbloc):
         os.remove(thumbloc)
-   except Exception as e:
-            await app.send_message(message.from_user.id,"Please start @szrosebot ...")
-            print(str(e))
 
 async def downlodvideo(m, message, vid_id):
-   try: 
     m = await m.edit(text = "📥 Downloading...",
     reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("📥 Downloading...", callback_data="progress")]]))
@@ -67,9 +62,6 @@ async def downlodvideo(m, message, vid_id):
     await m.delete()
     if os.path.exists(video):
             os.remove(video)
-   except Exception as e:
-            await app.send_message(message.from_user.id,"Please start @szrosebot ...")
-            print(str(e))
 
 @app.on_message(filters.command("song") & filters.group)
 async def songdown(_, message):
