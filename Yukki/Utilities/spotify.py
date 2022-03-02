@@ -113,7 +113,7 @@ def getsp_categories_info(id):
                     plist3.append(plist2)
                 except:
                     pass
-            elif len(plist3) == 3:
+            elif len(plist3) == 2:
                 plist1.append(plist3)
                 plist3 = []        
         button1 = []
