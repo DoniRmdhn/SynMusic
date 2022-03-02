@@ -113,7 +113,7 @@ def getsp_categories_info(id):
                     plist3.append(plist2)
                 except:
                     pass
-            elif len(plist3) == 2:
+            elif len(plist3) == 3:
                 plist1.append(plist3)
                 plist3 = []        
         button1 = []
@@ -121,14 +121,13 @@ def getsp_categories_info(id):
             try:    
                 button2 = [
                             InlineKeyboardButton(text=i[0][0], callback_data="psppl" + i[0][1]),
-                            InlineKeyboardButton(text=i[1][0], callback_data="psppl" + i[1][1]), 
-                            InlineKeyboardButton(text=i[1][1], callback_data="psppl" + i[2][2]),
+                            InlineKeyboardButton(text=i[1][0], callback_data="psppl" + i[1][1]),                              
                         ]
                 button1.append(button2)
             except:
                 try:    
                     button2 = [
-                                InlineKeyboardButton(text=i[0][0], callback_data="psppl" + i[0][1]),                                
+                                InlineKeyboardButton(text=i[0][0], callback_data="psppl" + i[0][1]),                                  
                             ]
                     button1.append(button2)
                 except:
@@ -176,12 +175,14 @@ def getsp_categories():
                     text="❮❮❮Previous", callback_data=f"cat pg3"
                 ),
                 InlineKeyboardButton(
-                    text="Close", callback_data="close_btn"
-                ),
-                InlineKeyboardButton(
                     text="Next❯❯❯", callback_data="cat pg2"
                 ),                                   
-            ],            
+            ],
+            [
+                InlineKeyboardButton(
+                    text="Close ✖️", callback_data="close_btn"
+                ), 
+            ],           
         ]
     
     buttons2 = [            
@@ -221,11 +222,13 @@ def getsp_categories():
                     text="❮❮❮Previous", callback_data=f"cat pg1"
                 ),
                 InlineKeyboardButton(
-                    text="Close", callback_data="close_btn"
-                ),
-                InlineKeyboardButton(
                     text="Next❯❯❯", callback_data="cat pg3"
                 ),                                   
+            ],
+            [
+                InlineKeyboardButton(
+                    text="Close ✖️", callback_data="close_btn"
+                ), 
             ],
         ]
     
@@ -251,11 +254,13 @@ def getsp_categories():
                     text="❮❮❮Previous", callback_data=f"cat pg2"
                 ),
                 InlineKeyboardButton(
-                    text="Close", callback_data="close_btn"
-                ),
-                InlineKeyboardButton(
                     text="Next❯❯❯", callback_data="cat pg1"
-                ),                                   
+                ),                                  
+            ],
+            [
+                InlineKeyboardButton(
+                    text="Close ✖️", callback_data="close_btn"
+                ), 
             ],
         ]
      
