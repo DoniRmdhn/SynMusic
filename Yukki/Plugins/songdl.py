@@ -13,7 +13,12 @@ CAPTION_TEXT = """
 """
 
 CAPTION_BTN = InlineKeyboardMarkup(
-            [[InlineKeyboardButton("News  Channel", url="https://t.me/szteambots")]])
+            [[
+                    InlineKeyboardButton("News  Channel", url="https://t.me/szteambots")
+                ],
+                [
+                    InlineKeyboardButton("Send To Bot's PM🤗", callback_data="_pmmenu")
+                ]])
 
 async def downloadsong(m, message, vid_id):
    try: 
@@ -47,6 +52,24 @@ async def downloadsong(m, message, vid_id):
    except Exception as e:
        await m.edit(f"__Error occured. ⚠️ \nAnd also you can get a help from @slbotzone.__\n\n{str(e)}")
 
+@app.on_callback_query(filters.regex("_pmmenu"))
+async def mylogo(_, query,vid_id,thumbloc,song):
+ try:   
+   mode = query.from_user.mention
+   link =  YouTube(f"https://youtu.be/{vid_id}")
+   caption = CAPTION_TEXT.format(link.title, query.from_user.mention if query.from_user else "Anonymous Admin", "Youtube"),
+   await app.send_audio(chat_id=mode,
+   audio = song,
+   thumb = thumbloc,
+   caption=caption)
+   if os.path.exists(song):
+        os.remove(song)
+   if os.path.exists(thumbloc):
+        os.remove(thumbloc)
+ except Exception as e:
+            await app.send_message(query.from_user.id,"Please start @szrosebot ...")
+            print(str(e))
+
 async def downlodvideo(m, message, vid_id):
    try: 
     m = await m.edit(text = "📥 Downloading...",
@@ -71,8 +94,8 @@ async def downlodvideo(m, message, vid_id):
 async def songdown(_, message):
    try: 
     if len(message.command) < 2:
-            return await message.reply_text("Give a song name ⚠️")
-    m = await message.reply_text("🔎 Searching ...")
+            return await message.reply_text("Give a  name")
+    m = await message.reply_text("🔎 `Searching ...`")
     name = message.text.split(None, 1)[1]
     vid_id = (YoutubeSearch(name, max_results=1).to_dict())[0]["id"]
     await downloadsong(m, message, vid_id)
@@ -87,8 +110,8 @@ Use help Menu : /help
 async def videodown(_, message):
    try: 
     if len(message.command) < 2:
-            return await message.reply_text("Give a song name ⚠️")
-    m = await message.reply_text("🔎 Searching ...")
+            return await message.reply_text("Give a name")
+    m = await message.reply_text("🔎 `Searching ...`")
     name = message.text.split(None, 1)[1]
     vid_id = (YoutubeSearch(name, max_results=1).to_dict())[0]["id"]
     await downlodvideo(m, message, vid_id)
