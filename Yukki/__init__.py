@@ -62,7 +62,7 @@ ASSISTANT_PREFIX = ASSISTANT_PREFIX
 ### Bot Info
 BOT_ID = 0
 BOT_NAME = ""
-BOT_USERNAME = szrosebot
+BOT_USERNAME = 'szrosebot'
 
 ### Assistant Info
 ASSIDS = []
