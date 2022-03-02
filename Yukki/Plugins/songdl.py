@@ -37,10 +37,6 @@ async def downloadsong(m, message, vid_id):
   """,
     reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("📤 Uploading...", callback_data="progress")]]))
-    await message.reply_audio(song,
-    caption = CAPTION_TEXT.format(link.title, message.from_user.mention if message.from_user else "Anonymous Admin", "Youtube"),
-    thumb = thumbloc,
-    reply_markup = CAPTION_BTN)
     await app.send_audio(song,
     caption = CAPTION_TEXT.format(link.title, message.from_user.mention if message.from_user else "Anonymous Admin", "Youtube"),
     thumb = thumbloc,
@@ -65,9 +61,6 @@ async def downlodvideo(m, message, vid_id):
     m = await m.edit(text = "📤 Uploading...",
     reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("📤 Uploading...", callback_data="progress")]]))
-    await message.reply_video(video, 
-    caption=CAPTION_TEXT.format(link.title, message.from_user.mention if message.from_user else "Anonymous Admin", "Youtube"),
-    reply_markup=CAPTION_BTN)
     await app.send_video(video,
     caption = CAPTION_TEXT.format(link.title, message.from_user.mention if message.from_user else "Anonymous Admin", "Youtube"),
     reply_markup = CAPTION_BTN)
