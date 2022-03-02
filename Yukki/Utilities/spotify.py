@@ -1,6 +1,6 @@
 # dont steal these
-client_id = "817ef3b667ae41fa904568b4eeaee96d"
-client_secret = "8130539ee3cf4b30bc24d2f694a60838"
+client_id = "1e1afd9f0e62421c8ba56b555bd1baf5"
+client_secret = "7740c58bbf094ad09361f3a0db403002"
 
 from config import PL_LIMIT
 from Yukki import BOT_USERNAME
