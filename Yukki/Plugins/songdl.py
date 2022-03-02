@@ -9,15 +9,13 @@ CAPTION_TEXT = """
 ࿂ **Title:** `{}`
 ࿂ **Requester** : {}
 ࿂ **Downloaded Via** : `{}`
-࿂ **Downloaded By :** [szmediabot](https://t.me/szmediabot)
 """
 
 CAPTION_BTN = InlineKeyboardMarkup(
-                [
-                    InlineKeyboardButton("News  Channel", url="https://t.me/szteambots")
-                ],)
+            [[InlineKeyboardButton("News  Channel", url="https://t.me/szteambots")]])
 
 async def downloadsong(m, message, vid_id):
+   try: 
     m = await m.edit(text = f"📥 **Upload Started**\n@szteambots",
     reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("📥 Downloading...", callback_data="progress")]]))
@@ -36,7 +34,7 @@ async def downloadsong(m, message, vid_id):
   """,
     reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("📤 Uploading...", callback_data="progress")]]))
-    await app.send_audio(song,
+    await message.reply_audio(song,
     caption = CAPTION_TEXT.format(link.title, message.from_user.mention if message.from_user else "Anonymous Admin", "Youtube"),
     thumb = thumbloc,
     reply_markup = CAPTION_BTN)
@@ -45,8 +43,11 @@ async def downloadsong(m, message, vid_id):
         os.remove(song)
     if os.path.exists(thumbloc):
         os.remove(thumbloc)
+   except Exception as e:
+       await m.edit(f"__Error occured. ⚠️ \nAnd also you can get a help from @slbotzone.__\n\n{str(e)}")
 
 async def downlodvideo(m, message, vid_id):
+   try: 
     m = await m.edit(text = "📥 Downloading...",
     reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("📥 Downloading...", callback_data="progress")]]))
@@ -56,19 +57,21 @@ async def downlodvideo(m, message, vid_id):
     m = await m.edit(text = "📤 Uploading...",
     reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("📤 Uploading...", callback_data="progress")]]))
-    await app.send_video(video,
-    caption = CAPTION_TEXT.format(link.title, message.from_user.mention if message.from_user else "Anonymous Admin", "Youtube"),
-    reply_markup = CAPTION_BTN)
+    await message.reply_video(video, 
+    caption=CAPTION_TEXT.format(link.title, message.from_user.mention if message.from_user else "Anonymous Admin", "Youtube"),
+    reply_markup=CAPTION_BTN)
     await m.delete()
     if os.path.exists(video):
             os.remove(video)
+   except Exception as e:
+       await m.edit(f"__Error occured. ⚠️ \nAnd also you can get a help from @slbotzone.__\n\n{str(e)}")
 
-@app.on_message(filters.command("song") & filters.group)
+@app.on_message(filters.command("song"))
 async def songdown(_, message):
    try: 
     if len(message.command) < 2:
-            return await message.reply_text("Give a  name")
-    m = await message.reply_text("🔎 `Searching ...`")
+            return await message.reply_text("Give a song name ⚠️")
+    m = await message.reply_text("🔎 Searching ...")
     name = message.text.split(None, 1)[1]
     vid_id = (YoutubeSearch(name, max_results=1).to_dict())[0]["id"]
     await downloadsong(m, message, vid_id)
@@ -79,12 +82,12 @@ Please check, you using correct format or your spellings are correct and try aga
 Use help Menu : /help 
        """)
 
-@app.on_message(filters.command("video") & filters.group)
+@app.on_message(filters.command("video"))
 async def videodown(_, message):
    try: 
     if len(message.command) < 2:
-            return await message.reply_text("Give a name")
-    m = await message.reply_text("🔎 `Searching ...`")
+            return await message.reply_text("Give a song name ⚠️")
+    m = await message.reply_text("🔎 Searching ...")
     name = message.text.split(None, 1)[1]
     vid_id = (YoutubeSearch(name, max_results=1).to_dict())[0]["id"]
     await downlodvideo(m, message, vid_id)
