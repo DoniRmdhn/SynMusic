@@ -89,7 +89,7 @@ async def timer_checkup_markup(_, CallbackQuery):
         )
 
 
-@app.on_message(filters.command(["queue", f"queue@{BOT_USERNAME}"]))
+@app.on_message(filters.command(["queue", f"queue@{BOT_USERNAME}", "current"]))
 async def activevc(_, message: Message):
     global get_queue
     if await is_active_chat(message.chat.id):
@@ -110,8 +110,8 @@ async def activevc(_, message: Message):
         msg = "**Queued List**\n\n"
         msg += "**Currently Playing:**"
         msg += "\n▶️" + current_playing[:30]
-        msg += f"\n   ╚By:- {user_name}"
-        msg += f"\n   ╚Duration:- Remaining `{dur_left}` out of `{duration_min}` Mins."
+        msg += f"\n   ᗚ By:- {user_name}"
+        msg += f"\n   ᗚ Duration:- Remaining `{dur_left}` out of `{duration_min}` Mins."
         fetched.pop(0)
         if fetched:
             msg += "\n\n"
@@ -121,8 +121,8 @@ async def activevc(_, message: Message):
                 usr = song[1]
                 dur = song[2]
                 msg += f"\n⏸️{name}"
-                msg += f"\n   ╠Duration : {dur}"
-                msg += f"\n   ╚Requested by : {usr}\n"
+                msg += f"\n   ᗚ Duration : {dur}"
+                msg += f"\n   ᗚ Requested by : {usr}\n"
         if len(msg) > 4096:
             await mystic.delete()
             filename = "queue.txt"
@@ -206,7 +206,7 @@ async def activevi_(_, message: Message):
         )
 
 
-@app.on_message(filters.command("joinassistant") & filters.user(SUDOERS))
+@app.on_message(filters.command(["userbotjoin", "joinassistant"]) & filters.user(SUDOERS))
 async def basffy(_, message):
     if len(message.command) != 2:
         await message.reply_text(
