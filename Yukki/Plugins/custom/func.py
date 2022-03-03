@@ -86,10 +86,14 @@ async def mplay_stream(message,MusicData):
     mystic = await message.reply_text(f"Processing:- {title[:20]}")
     await mystic.edit(
    f"""
-**Rose Music Downloader** !
-- **Title:** `{title[:50]}`
-- **duration** :`{duration_min}`
-[📥](https://t.me/szteambots)■■■■■■■■■■■■
+**Rose music Downloader**
+
+100% •••••••••••••••100%
+
+ᗚ **Title:** `{title[:50]}`
+ᗚ  **duration** :`{duration_min}`
+
+ᗚ @szteambots | @szrosebot    
                     """)
     downloaded_file = await loop.run_in_executor(
         None, download, videoid, mystic, title
