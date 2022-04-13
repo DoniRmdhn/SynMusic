@@ -41,7 +41,7 @@ from pyrogram.errors import UserNotParticipant
 
 loop = asyncio.get_event_loop()
 
-JOIN_ASAP = f"⛔️** Access Denied **⛔️\n\n🙋‍♂️ Hey There , You Must Join @szteambots Telegram Channel To Use This BOT. So, Please Join it & Try Again🤗. Thank You 🤝"
+JOIN_ASAP = f"🙋‍♂️ hai, Anda Harus Bergabung dengan Saluran Telegram @szteambots Untuk Menggunakan BOT Ini. Jadi, Silakan Bergabung & Coba Lagi. Terima kasih 🤝"
 
 FSUBB = InlineKeyboardMarkup(
         [[
